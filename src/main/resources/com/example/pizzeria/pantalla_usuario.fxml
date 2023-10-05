@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria.Pantalla_Usuario_Controller">
+   <children>
+      <Label layoutX="305.0" layoutY="43.0" prefHeight="24.0" prefWidth="69.0" text="TAMAÑO" />
+      <Label layoutX="40.0" layoutY="43.0" prefHeight="24.0" prefWidth="94.0" text="SABOR" />
+      <Label layoutX="494.0" layoutY="45.0" text="BEBIDA" />
+      <Label layoutX="674.0" layoutY="45.0" prefHeight="21.0" prefWidth="69.0" text="SALSA" />
+      <CheckBox fx:id="ckeck_box_agua" layoutX="487.0" layoutY="78.0" mnemonicParsing="false" text="Agua" />
+      <RadioButton fx:id="radio_button_cuatro_quesos" layoutX="40.0" layoutY="88.0" mnemonicParsing="false" text="Cuatro quesos">
+         <toggleGroup>
+            <ToggleGroup fx:id="sabor" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="radio_button_atun" layoutX="46.0" layoutY="130.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="83.0" text="Atun" toggleGroup="$sabor" />
+      <RadioButton fx:id="radio_button_chocolate" layoutX="40.0" layoutY="154.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="140.0" text="Chocolate" toggleGroup="$sabor" />
+      <RadioButton fx:id="radio_button_pequeña" layoutX="309.0" layoutY="88.0" mnemonicParsing="false" text="Pequeña">
+         <toggleGroup>
+            <ToggleGroup fx:id="tamano" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="radio_button_media" layoutX="305.0" layoutY="122.0" mnemonicParsing="false" text="Media" toggleGroup="$tamano" />
+      <RadioButton fx:id="radio_button_grande" layoutX="301.0" layoutY="154.0" mnemonicParsing="false" text="Grande" toggleGroup="$tamano" />
+      <CheckBox fx:id="check_box_cerveza" layoutX="487.0" layoutY="112.0" mnemonicParsing="false" text="Cerveza" />
+      <CheckBox fx:id="chek_box_cola" layoutX="490.0" layoutY="154.0" mnemonicParsing="false" text="Cola" />
+      <ChoiceBox fx:id="choice_box_ketchup" layoutX="730.0" layoutY="73.0" prefHeight="31.0" prefWidth="49.0" />
+      <Label layoutX="638.0" layoutY="77.0" prefHeight="21.0" prefWidth="69.0" text="Ketchup" />
+      <Label layoutX="638.0" layoutY="113.0" prefHeight="21.0" prefWidth="69.0" text="Mostaza" />
+      <Label layoutX="638.0" layoutY="145.0" prefHeight="21.0" prefWidth="69.0" text="Barbacoa" />
+      <ChoiceBox fx:id="choice_box_mostaza" layoutX="730.0" layoutY="108.0" prefHeight="31.0" prefWidth="49.0" />
+      <ChoiceBox fx:id="choice_box_barbacoa" layoutX="730.0" layoutY="140.0" prefHeight="31.0" prefWidth="49.0" />
+      <Button fx:id="botton_calcular" layoutX="143.0" layoutY="539.0" mnemonicParsing="false" onAction="#Calcular_Pedido" text="CALCULAR" />
+      <Button fx:id="botton_confirmar" layoutX="604.0" layoutY="539.0" mnemonicParsing="false" onAction="#Comfirmar_Pedido" text="CONFIRMAR" />
+      <TextArea fx:id="texto_con_precio" layoutX="113.0" layoutY="590.0" prefHeight="64.0" prefWidth="152.0" />
+      <TableView fx:id="tabela_pedido" layoutX="189.0" layoutY="284.0" prefHeight="200.0" prefWidth="451.0">
+        <columns>
+          <TableColumn fx:id="coluna_sabor" prefWidth="75.0" text="SABOR" />
+          <TableColumn fx:id="coluna_massa" prefWidth="75.0" text="MASSA" />
+            <TableColumn fx:id="coluna_tamaño" prefWidth="75.0" text="TAMAÑO" />
+            <TableColumn fx:id="coluna_bebida" prefWidth="75.0" text="BEBIDA" />
+            <TableColumn fx:id="coluna_extra" prefWidth="75.0" text="EXTRA" />
+            <TableColumn fx:id="coluna_salsa" prefWidth="75.0" text="SALSA" />
+        </columns>
+      </TableView>
+      <Button fx:id="botton_ver_pedido" layoutX="343.0" layoutY="231.0" mnemonicParsing="false" onAction="#Ver_Pedido" text="VER PEDIDO" />
+      <Button fx:id="botton_salir" layoutX="604.0" layoutY="590.0" mnemonicParsing="false" onAction="#Salir" text="SALIR" />
+   </children>
+</AnchorPane>
