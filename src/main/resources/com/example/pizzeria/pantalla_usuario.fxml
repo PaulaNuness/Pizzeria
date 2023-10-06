@@ -44,10 +44,8 @@
       <TableView fx:id="tabela_pedido" layoutX="189.0" layoutY="284.0" prefHeight="200.0" prefWidth="451.0">
         <columns>
           <TableColumn fx:id="coluna_sabor" prefWidth="75.0" text="SABOR" />
-          <TableColumn fx:id="coluna_massa" prefWidth="75.0" text="MASSA" />
             <TableColumn fx:id="coluna_tamaño" prefWidth="75.0" text="TAMAÑO" />
             <TableColumn fx:id="coluna_bebida" prefWidth="75.0" text="BEBIDA" />
-            <TableColumn fx:id="coluna_extra" prefWidth="75.0" text="EXTRA" />
             <TableColumn fx:id="coluna_salsa" prefWidth="75.0" text="SALSA" />
         </columns>
       </TableView>

@@ -1,9 +1,16 @@
 package com.example.pizzeria;
 
+import javafx.application.Application;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -14,7 +21,7 @@ import java.util.ResourceBundle;
  * @author Paula Nunes
  * @since 2023/10/05
  */
-public class Pantalla_Usuario_Controller implements Initializable {
+public class Pantalla_Usuario_Controller  implements Initializable {
 
     /**
      *elementos que tenho criado na parte grafica,Tipo nome_da_varible
@@ -68,30 +75,26 @@ public class Pantalla_Usuario_Controller implements Initializable {
     private TextArea texto_con_precio;
 
     @FXML
-    private TableView<?> tabela_pedido;
+    private TableView<Pedido> tabela_pedido;
 
     @FXML
-    private TableColumn<?, ?> coluna_sabor;
+    private TableColumn coluna_sabor;
 
     @FXML
-    private TableColumn<?, ?> coluna_massa;
+    private TableColumn coluna_tamaño;
 
     @FXML
-    private TableColumn<?, ?> coluna_tamaño;
+    private TableColumn coluna_bebida;
 
     @FXML
-    private TableColumn<?, ?> coluna_bebida;
-
-    @FXML
-    private TableColumn<?, ?> coluna_extra;
-
-    @FXML
-    private TableColumn<?, ?> coluna_salsa;
+    private TableColumn coluna_salsa;
 
     @FXML
     private Button botton_ver_pedido;
     @FXML
     private Button botton_salir;
+
+    private ObservableList<Pedido>pedidos;
 
     /**
      *
@@ -125,7 +128,16 @@ public class Pantalla_Usuario_Controller implements Initializable {
      */
     @FXML
     void Ver_Pedido(ActionEvent event) {
+        String sabor = String.valueOf(this.radio_button_atun.isSelected());
+        String tamano = String.valueOf(this.radio_button_pequeña.isSelected());
+        String bebida = String.valueOf(this.chek_box_cola.isSelected());
+        String salsa = "paula";
 
+        Pedido pe=new Pedido(sabor,tamano,bebida,salsa);
+
+        this.pedidos.add(pe);
+
+        this.tabela_pedido.setItems(pedidos);
     }
 
     /**
@@ -161,6 +173,11 @@ public class Pantalla_Usuario_Controller implements Initializable {
         choice_box_mostaza.getItems().addAll(cantidad_mostaza);
         choice_box_barbacoa.getItems().addAll(cantidad_barbacoa);
 
-
+        pedidos= FXCollections.observableArrayList();
+        this.coluna_sabor.setCellValueFactory(new PropertyValueFactory<>("sabor"));
+        this.coluna_tamaño.setCellValueFactory(new PropertyValueFactory<>("tamano"));
+        this.coluna_bebida.setCellValueFactory(new PropertyValueFactory<>("bebida"));
+        this.coluna_salsa.setCellValueFactory(new PropertyValueFactory<>("salsa"));
     }
+
 }
