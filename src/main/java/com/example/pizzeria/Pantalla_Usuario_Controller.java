@@ -169,15 +169,19 @@ public class Pantalla_Usuario_Controller  implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        choice_box_ketchup.getItems().addAll(cantidad_ketchup);//añadir no choice_box os elemntos que tenhpo dentro do Array
-        choice_box_mostaza.getItems().addAll(cantidad_mostaza);
-        choice_box_barbacoa.getItems().addAll(cantidad_barbacoa);
+        try{
+            choice_box_ketchup.getItems().addAll(cantidad_ketchup);//añadir no choice_box os elemntos que tenhpo dentro do Array
+            choice_box_mostaza.getItems().addAll(cantidad_mostaza);
+            choice_box_barbacoa.getItems().addAll(cantidad_barbacoa);
 
-        pedidos= FXCollections.observableArrayList();
-        this.coluna_sabor.setCellValueFactory(new PropertyValueFactory<>("sabor"));
-        this.coluna_tamaño.setCellValueFactory(new PropertyValueFactory<>("tamano"));
-        this.coluna_bebida.setCellValueFactory(new PropertyValueFactory<>("bebida"));
-        this.coluna_salsa.setCellValueFactory(new PropertyValueFactory<>("salsa"));
+            pedidos= FXCollections.observableArrayList();
+            this.coluna_sabor.setCellValueFactory(new PropertyValueFactory<>("sabor"));
+            this.coluna_tamaño.setCellValueFactory(new PropertyValueFactory<>("tamano"));
+            this.coluna_bebida.setCellValueFactory(new PropertyValueFactory<>("bebida"));
+            this.coluna_salsa.setCellValueFactory(new PropertyValueFactory<>("salsa"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

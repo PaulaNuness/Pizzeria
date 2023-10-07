@@ -8,8 +8,8 @@
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria.Pantalla_Admin_Controller">
    <children>
       <DatePicker fx:id="calendario" layoutX="128.0" layoutY="167.0" />
-      <Label layoutX="363.0" layoutY="54.0" text="VER PEDIDOS" />
-      <Label layoutX="192.0" layoutY="128.0" text="¿QUE FECHA?" />
-      <Button fx:id="botton_Salir" layoutX="588.0" layoutY="161.0" mnemonicParsing="false" onAction="#Salir" text="SALIR" />
+      <Label layoutX="363.0" layoutY="54.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="VER PEDIDOS" />
+      <Label layoutX="192.0" layoutY="128.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="¿QUE FECHA?" />
+      <Button fx:id="botton_Salir" layoutX="588.0" layoutY="161.0" mnemonicParsing="false" onAction="#Salir" styleClass="botton" stylesheets="@../../../css/estilos.css" text="SALIR" />
    </children>
 </AnchorPane>

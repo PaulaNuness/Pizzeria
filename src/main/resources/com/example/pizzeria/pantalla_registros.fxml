@@ -5,13 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria.Pantalla_Registros_Controller">
    <children>
-      <Button fx:id="botton_Confirmar" layoutX="106.0" layoutY="261.0" mnemonicParsing="false" onAction="#Confirmar_Registro" text="CONFIRMAR" />
-      <Button fx:id="botton_Salir" layoutX="358.0" layoutY="261.0" mnemonicParsing="false" onAction="#Salir" text="SALIR" />
-      <Label layoutX="96.0" layoutY="100.0" text="E-MAIL: " />
-      <Label layoutX="96.0" layoutY="135.0" text="CONTRASEÑA:" />
+      <Button fx:id="botton_Confirmar" layoutX="106.0" layoutY="261.0" mnemonicParsing="false" onAction="#Confirmar_Registro" styleClass="botton" stylesheets="@../../../css/estilos.css" text="CONFIRMAR" />
+      <Button fx:id="botton_Salir" layoutX="358.0" layoutY="261.0" mnemonicParsing="false" onAction="#Salir" styleClass="botton" stylesheets="@../../../css/estilos.css" text="SALIR" />
+      <Label layoutX="96.0" layoutY="100.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="E-MAIL: " />
+      <Label layoutX="96.0" layoutY="135.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="CONTRASEÑA:" />
       <TextField fx:id="texto_registrar_email" layoutX="238.0" layoutY="95.0" />
       <TextField fx:id="texto_registrar_contrasena" layoutX="238.0" layoutY="130.0" />
    </children>
