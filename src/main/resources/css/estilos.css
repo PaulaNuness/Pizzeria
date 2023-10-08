@@ -1,7 +1,11 @@
 .letras{
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
     -fx-font-style: italic;
     -fx-font-family: Arial;
+    -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 2, 2);
+    -fx-font-weight: bold;
+
+
 }
 
 .botton{
@@ -15,5 +19,21 @@
     -fx-pref-height: 40px;
 }
 .xBotton:hover {
-    -fx-background-color: #FFE57F;
+    -fx-background-color: #40BEB6;
+}
+.fondo{
+    -fx-background-color: #81595F;
+
+}
+.fondo{
+    -fx-background-color: #81595F;
+
+}
+.fondo2{
+    -fx-background-color: #D3E3B8;
+
+}
+.fondo3{
+    -fx-background-color: #235606;
+
 }

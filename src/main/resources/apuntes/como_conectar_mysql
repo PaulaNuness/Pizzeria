@@ -1,0 +1,37 @@
+1-Adicione o Driver JDBC ao seu projeto:
+
+    Se você estiver usando o Maven ou o Gradle, adicione a dependência ao seu arquivo de construção
+    (pom.xml para Maven ou build.gradle para Gradle)
+
+2-Em maven repositorio encontrei:
+      <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>8.1.0</version>
+            </dependency>
+
+3-Configure a conexão com o MySQL:
+
+  No IntelliJ IDEA, vá para o menu "View" > "Tool Windows" > "Database" para abrir a janela "Database".
+  Clique no ícone de adição (+) na parte superior esquerda da janela "Database" e escolha "Data Source" > "MySQL".
+  Configure as informações de conexão, incluindo o nome do host, porta, nome de usuário e senha.
+  Selecione o driver JDBC MySQL que você configurou na etapa anterior
+
+
+4-Teste a conexão:
+    Clique no botão "Test Connection" para garantir que a conexão com o MySQL
+    esteja funcionando corretamente. Você deve ver uma mensagem de confirmação de que a conexão foi bem-sucedida.
+
+    Se der um error, cclique na opçao que oferece: Dowlond alguma coisa
+    Logo a conexao estara em verde
+
+5-Salvar a configuração: Dê um nome para a fonte de dados (por exemplo, "MySQLConnection")
+e clique em "OK" para salvar a configuração.
+
+********************************************************************************************************
+
+nao consegui usar as dependencias, entao coloquei diretamente o .jar para a conexao
+
+********************************************************************************************************
+

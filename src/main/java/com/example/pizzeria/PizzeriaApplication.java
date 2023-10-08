@@ -9,13 +9,14 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 /**
- *
+ *@author Paula Nunes
+ * @since 2023/10/05
  */
 public class PizzeriaApplication extends Application {
     /**
      *
-     * @param stage
-     * @throws IOException
+     * @param stage --O método "start" recebe um parâmetro chamado "stage" do tipo "Stage". O "Stage" é um tipo de classe em JavaFX usado para representar uma janela de aplicativo em uma interface gráfica JavaFX
+     * @throws IOException  Ela é geralmente usada quando ocorrem erros durante a leitura ou escrita de dados para arquivos, sockets de rede ou outros tipos de operações de entrada e saída.
      */
     @Override
     public void start(Stage stage) throws IOException {
@@ -28,7 +29,7 @@ public class PizzeriaApplication extends Application {
 
     /**
      *
-     * @param args
+     * @param args Ele permite que você passe argumentos da linha de comando para o programa quando você o executa
      */
     public static void main(String[] args) {
         launch();

@@ -1,55 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria.Pantalla_Usuario_Controller">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" stylesheets="@../../../css/estilos.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria.controles.Pantalla_Usuario_Controller">
    <children>
-      <Label layoutX="305.0" layoutY="43.0" prefHeight="24.0" prefWidth="69.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="TAMAÑO" />
-      <Label layoutX="40.0" layoutY="43.0" prefHeight="24.0" prefWidth="94.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="SABOR" />
-      <Label layoutX="494.0" layoutY="45.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="BEBIDA" />
-      <Label layoutX="674.0" layoutY="45.0" prefHeight="21.0" prefWidth="69.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="SALSA" />
-      <CheckBox fx:id="ckeck_box_agua" layoutX="487.0" layoutY="78.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Agua" />
-      <RadioButton fx:id="radio_button_cuatro_quesos" layoutX="40.0" layoutY="88.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Cuatro quesos">
+      <ImageView fitHeight="659.0" fitWidth="900.0" layoutY="65.0" opacity="0.56" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../imagens/pizza2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="305.0" layoutY="72.0" prefHeight="24.0" prefWidth="126.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="TAMAÑO" />
+      <Label layoutX="40.0" layoutY="71.0" prefHeight="24.0" prefWidth="167.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="TIPOS DE PIZZA" />
+      <Label layoutX="494.0" layoutY="74.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="BEBIDA" />
+      <Label layoutX="703.0" layoutY="74.0" prefHeight="21.0" prefWidth="69.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="SALSA" />
+      <CheckBox fx:id="ckeck_box_agua" layoutX="491.0" layoutY="113.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Agua" />
+      <RadioButton fx:id="radio_button_cuatro_quesos" layoutX="44.0" layoutY="116.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Cuatro quesos">
          <toggleGroup>
             <ToggleGroup fx:id="sabor" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="radio_button_atun" layoutX="46.0" layoutY="130.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="83.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Atun" toggleGroup="$sabor" />
-      <RadioButton fx:id="radio_button_chocolate" layoutX="40.0" layoutY="154.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="140.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Chocolate" toggleGroup="$sabor" />
-      <RadioButton fx:id="radio_button_pequeña" layoutX="309.0" layoutY="88.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Pequeña">
+      <RadioButton fx:id="radio_button_atun" layoutX="45.0" layoutY="155.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="83.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Atun" toggleGroup="$sabor" />
+      <RadioButton fx:id="radio_button_chocolate" layoutX="44.0" layoutY="193.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="140.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Chocolate" toggleGroup="$sabor" />
+      <RadioButton fx:id="radio_button_pequeña" layoutX="293.0" layoutY="117.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Pequeña">
          <toggleGroup>
             <ToggleGroup fx:id="tamano" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="radio_button_media" layoutX="305.0" layoutY="122.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Media" toggleGroup="$tamano" />
-      <RadioButton fx:id="radio_button_grande" layoutX="301.0" layoutY="154.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Grande" toggleGroup="$tamano" />
-      <CheckBox fx:id="check_box_cerveza" layoutX="487.0" layoutY="112.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Cerveza" />
-      <CheckBox fx:id="chek_box_cola" layoutX="490.0" layoutY="154.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Cola" />
-      <ChoiceBox fx:id="choice_box_ketchup" layoutX="730.0" layoutY="73.0" prefHeight="31.0" prefWidth="49.0" />
-      <Label layoutX="638.0" layoutY="77.0" prefHeight="21.0" prefWidth="69.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Ketchup" />
-      <Label layoutX="638.0" layoutY="113.0" prefHeight="21.0" prefWidth="69.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Mostaza" />
-      <Label layoutX="638.0" layoutY="145.0" prefHeight="21.0" prefWidth="69.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Barbacoa" />
-      <ChoiceBox fx:id="choice_box_mostaza" layoutX="730.0" layoutY="108.0" prefHeight="31.0" prefWidth="49.0" />
-      <ChoiceBox fx:id="choice_box_barbacoa" layoutX="730.0" layoutY="140.0" prefHeight="31.0" prefWidth="49.0" />
-      <Button fx:id="botton_calcular" layoutX="143.0" layoutY="539.0" mnemonicParsing="false" onAction="#Calcular_Pedido" styleClass="botton" stylesheets="@../../../css/estilos.css" text="CALCULAR" />
-      <Button fx:id="botton_confirmar" layoutX="604.0" layoutY="539.0" mnemonicParsing="false" onAction="#Comfirmar_Pedido" styleClass="botton" stylesheets="@../../../css/estilos.css" text="CONFIRMAR" />
+      <RadioButton fx:id="radio_button_media" layoutX="293.0" layoutY="155.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Mediana" toggleGroup="$tamano" />
+      <RadioButton fx:id="radio_button_grande" layoutX="294.0" layoutY="193.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Grande" toggleGroup="$tamano" />
+      <CheckBox fx:id="check_box_cerveza" layoutX="490.0" layoutY="152.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Cerveza" />
+      <CheckBox fx:id="chek_box_cola" layoutX="490.0" layoutY="192.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Cola" />
+      <ChoiceBox fx:id="choice_box_ketchup" layoutX="737.0" layoutY="147.0" prefHeight="31.0" prefWidth="49.0" />
+      <Label layoutX="638.0" layoutY="119.0" prefHeight="23.0" prefWidth="114.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Ketchup" />
+      <Label layoutX="638.0" layoutY="156.0" prefHeight="23.0" prefWidth="140.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Mostaza" />
+      <Label layoutX="638.0" layoutY="194.0" prefHeight="23.0" prefWidth="140.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Barbacoa" />
+      <ChoiceBox fx:id="choice_box_mostaza" layoutX="738.0" layoutY="109.0" prefHeight="31.0" prefWidth="49.0" />
+      <ChoiceBox fx:id="choice_box_barbacoa" layoutX="738.0" layoutY="194.0" prefHeight="31.0" prefWidth="49.0" />
+      <Button fx:id="botton_calcular" layoutX="143.0" layoutY="539.0" mnemonicParsing="false" onAction="#Calcular_Pedido" stylesheets="@../../../css/estilos.css" text="CALCULAR">
+         <styleClass>
+            <String fx:value="botton" />
+            <String fx:value="xBotton" />
+         </styleClass></Button>
+      <Button fx:id="botton_confirmar" layoutX="610.0" layoutY="526.0" mnemonicParsing="false" onAction="#Comfirmar_Pedido" stylesheets="@../../../css/estilos.css" text="CONFIRMAR">
+         <styleClass>
+            <String fx:value="botton" />
+            <String fx:value="xBotton" />
+         </styleClass></Button>
       <TextArea fx:id="texto_con_precio" layoutX="113.0" layoutY="590.0" prefHeight="64.0" prefWidth="152.0" />
-      <TableView fx:id="tabela_pedido" layoutX="189.0" layoutY="284.0" prefHeight="200.0" prefWidth="303.0">
+      <TableView fx:id="tabela_pedido" layoutX="28.0" layoutY="331.0" prefHeight="168.0" prefWidth="845.0" styleClass="fondo2" stylesheets="@../../../css/estilos.css">
         <columns>
-          <TableColumn fx:id="coluna_sabor" prefWidth="75.0" text="SABOR" />
-            <TableColumn fx:id="coluna_tamaño" prefWidth="75.0" text="TAMAÑO" />
-            <TableColumn fx:id="coluna_bebida" prefWidth="75.0" text="BEBIDA" />
-            <TableColumn fx:id="coluna_salsa" prefWidth="75.0" text="SALSA" />
+          <TableColumn fx:id="coluna_sabor" prefWidth="215.0" text="SABOR" />
+            <TableColumn fx:id="coluna_tamaño" prefWidth="170.0" text="TAMAÑO" />
+            <TableColumn fx:id="coluna_bebida" prefWidth="154.0" text="BEBIDA" />
+            <TableColumn fx:id="coluna_salsa" prefWidth="304.0" text="SALSA" />
         </columns>
       </TableView>
-      <Button fx:id="botton_ver_pedido" layoutX="343.0" layoutY="231.0" mnemonicParsing="false" onAction="#Ver_Pedido" styleClass="botton" stylesheets="@../../../css/estilos.css" text="VER PEDIDO" />
-      <Button fx:id="botton_salir" layoutX="604.0" layoutY="590.0" mnemonicParsing="false" onAction="#Salir" styleClass="botton" stylesheets="@../../../css/estilos.css" text="SALIR" />
+      <Button fx:id="botton_ver_pedido" layoutX="209.0" layoutY="279.0" mnemonicParsing="false" onAction="#Ver_Pedido" stylesheets="@../../../css/estilos.css" text="VER PEDIDO">
+         <styleClass>
+            <String fx:value="botton" />
+            <String fx:value="xBotton" />
+         </styleClass></Button>
+      <Button fx:id="botton_salir" layoutX="610.0" layoutY="602.0" mnemonicParsing="false" onAction="#Salir" stylesheets="@../../../css/estilos.css" text="SALIR">
+         <styleClass>
+            <String fx:value="botton" />
+            <String fx:value="xBotton" />
+         </styleClass></Button>
+      <Button fx:id="botton_borrar_pedido" layoutX="510.0" layoutY="279.0" mnemonicParsing="false" onAction="#Borrar_pedido" prefWidth="152.0" stylesheets="@../../../css/estilos.css" text="BORRAR ">
+         <styleClass>
+            <String fx:value="botton" />
+            <String fx:value="xBotton" />
+         </styleClass>
+      </Button>
+      <Separator layoutX="14.0" layoutY="28.0" prefHeight="4.0" prefWidth="662.0" style="-fx-border-color: black; -fx-background-color: green;" />
+      <Separator layoutX="221.0" layoutY="678.0" prefHeight="4.0" prefWidth="662.0" style="-fx-border-color: black; -fx-background-color: green;" />
    </children>
 </AnchorPane>
