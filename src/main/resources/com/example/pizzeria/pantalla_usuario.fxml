@@ -41,11 +41,11 @@
       <RadioButton fx:id="radio_button_grande" layoutX="294.0" layoutY="193.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Grande" toggleGroup="$tamano" />
       <CheckBox fx:id="check_box_cerveza" layoutX="490.0" layoutY="152.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Cerveza" />
       <CheckBox fx:id="chek_box_cola" layoutX="490.0" layoutY="192.0" mnemonicParsing="false" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Cola" />
-      <ChoiceBox fx:id="choice_box_ketchup" layoutX="737.0" layoutY="147.0" prefHeight="31.0" prefWidth="49.0" />
+      <ChoiceBox fx:id="choice_box_mostaza" layoutX="737.0" layoutY="147.0" prefHeight="31.0" prefWidth="49.0" />
       <Label layoutX="638.0" layoutY="119.0" prefHeight="23.0" prefWidth="114.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Ketchup" />
-      <Label layoutX="638.0" layoutY="156.0" prefHeight="23.0" prefWidth="140.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Mostaza" />
+      <Label layoutX="638.0" layoutY="156.0" prefHeight="23.0" prefWidth="100.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Mostaza" />
       <Label layoutX="638.0" layoutY="194.0" prefHeight="23.0" prefWidth="140.0" styleClass="letras" stylesheets="@../../../css/estilos.css" text="Barbacoa" />
-      <ChoiceBox fx:id="choice_box_mostaza" layoutX="738.0" layoutY="109.0" prefHeight="31.0" prefWidth="49.0" />
+      <ChoiceBox fx:id="choice_box_ketchup" layoutX="738.0" layoutY="109.0" prefHeight="31.0" prefWidth="49.0" />
       <ChoiceBox fx:id="choice_box_barbacoa" layoutX="738.0" layoutY="194.0" prefHeight="31.0" prefWidth="49.0" />
       <Button fx:id="botton_calcular" layoutX="143.0" layoutY="539.0" mnemonicParsing="false" onAction="#Calcular_Pedido" stylesheets="@../../../css/estilos.css" text="CALCULAR">
          <styleClass>

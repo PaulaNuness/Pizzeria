@@ -2,7 +2,6 @@ package com.example.pizzeria.controles;
 
 import com.example.pizzeria.PizzeriaApplication;
 import com.example.pizzeria.clases.ConexionBBDD;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,11 +18,9 @@ import java.util.Optional;
  * @since 2023/10/05
  */
 public class Inicio_Controller  {
-
     /**
      *elementos que tenho criado na parte grafica,Tipo nome_da_varible
      */
-
     @FXML
     private Button botton_entrar;
 
@@ -52,7 +49,6 @@ public class Inicio_Controller  {
         try{
             ConexionBBDD.conectar();//chamei o metodo que tenho na classe ConexionBBDD
             System.out.println("conectado?"+ConexionBBDD.estadoConexion());//quero mostrar no terminar o estado da conexao
-
             if(!texto_usuario.getText().isEmpty() && !texto_contraseña.getText().isEmpty() ){//se o texto_usuario  e o texto_contraseña nao estao vazios
                 if (ConexionBBDD.conectar()) {//se hay conexao com mysql
                     if (ConexionBBDD.usuario_existe(texto_usuario.getText(), texto_contraseña.getText()) == 0) {
@@ -90,7 +86,6 @@ public class Inicio_Controller  {
                             stage.show();
                         }
                     }
-
                 }else {//se nao tiver conexao com mysql
                     Alert alert=new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("No conectado");
@@ -103,16 +98,11 @@ public class Inicio_Controller  {
                 alert.setContentText("Rellenar usuario y contraseña");
                 alert.show();
             }
-
             ConexionBBDD.desconectar();
-
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-
-
-
     /**
      * o metodo abaixo limpa os campos texto_usuario e texto_contraseña que digitamos
      * @param "ActionEvent", que é um parâmetro comum para manipuladores de eventos JavaFX. O parâmetro do evento representa o evento que acionou o método.
@@ -126,7 +116,6 @@ public class Inicio_Controller  {
             throw new RuntimeException(e);
         }
     }
-
     /**
      *metodo que abre a ventana para o usuario se registrar
      * @param "ActionEvent", que é um parâmetro comum para manipuladores de eventos JavaFX. O parâmetro do evento representa o evento que acionou o método.
@@ -147,7 +136,6 @@ public class Inicio_Controller  {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**
@@ -164,14 +152,9 @@ public class Inicio_Controller  {
             if(result.get()== ButtonType.OK){//se o get do objeto for OK
                 Stage stagePrincipal=(Stage) botton_salir.getScene().getWindow();
                 stagePrincipal.close();//fecha a ventana
-
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
-
-
-
 }

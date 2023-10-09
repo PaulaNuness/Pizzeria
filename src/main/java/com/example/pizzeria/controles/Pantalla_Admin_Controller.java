@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -14,11 +13,9 @@ import java.util.Optional;
  * @since 2023/10/05
  */
 public class Pantalla_Admin_Controller {
-
     /**
      *elementos que tenho criado na parte grafica,Tipo nome_da_varible
      */
-
     @FXML
     private Button botton_Salir;
     @FXML
@@ -40,12 +37,10 @@ public class Pantalla_Admin_Controller {
             if(result.get()== ButtonType.OK){//se o get do objeto for OK
                 Stage stagePrincipal=(Stage) botton_Salir.getScene().getWindow();
                 stagePrincipal.close();//fecha a ventana
-
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**
@@ -60,8 +55,5 @@ public class Pantalla_Admin_Controller {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
-
 }

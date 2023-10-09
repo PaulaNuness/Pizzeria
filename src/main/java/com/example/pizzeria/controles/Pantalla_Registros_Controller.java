@@ -3,7 +3,6 @@ package com.example.pizzeria.controles;
 import com.example.pizzeria.clases.ConexionBBDD;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
-import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -27,22 +25,17 @@ import java.util.regex.Pattern;
  * @since 2023/10/05
  */
 public class Pantalla_Registros_Controller implements Initializable {
-
     /**
      *elementos que tenho criado na parte grafica,Tipo nome_da_varible
      */
     @FXML
     private Button botton_Confirmar;
-
     @FXML
     private Button botton_Salir;
-
     @FXML
     private TextField texto_registrar_email;
-
     @FXML
     private TextField texto_registrar_contrasena;
-
     @FXML
     private ImageView pizza;
     @FXML
@@ -79,7 +72,6 @@ public class Pantalla_Registros_Controller implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**
@@ -96,12 +88,10 @@ public class Pantalla_Registros_Controller implements Initializable {
             if(result.get()== ButtonType.OK){//se o get do objeto for OK
                 Stage stagePrincipal=(Stage) botton_Salir.getScene().getWindow();
                 stagePrincipal.close();//fecha a ventana
-
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**

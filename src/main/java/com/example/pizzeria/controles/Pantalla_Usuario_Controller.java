@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -21,79 +20,56 @@ import java.util.ResourceBundle;
  * @since 2023/10/05
  */
 public class Pantalla_Usuario_Controller  implements Initializable {
-
     /**
      *elementos que tenho criado na parte grafica,Tipo nome_da_varible
      */
-
     Integer[] numerossalsas={1,2,3};
     @FXML
     private RadioButton radio_button_cuatro_quesos;
-
     @FXML
     private RadioButton radio_button_atun;
-
     @FXML
     private RadioButton radio_button_chocolate;
-
     @FXML
     private RadioButton radio_button_pequeña;
-
     @FXML
     private RadioButton radio_button_media;
-
     @FXML
     private RadioButton radio_button_grande;
-
     @FXML
     private CheckBox check_box_cerveza;
-
     @FXML
     private CheckBox chek_box_cola;
-
     @FXML
     private CheckBox ckeck_box_agua;
-
     @FXML
     private ChoiceBox<Integer> choice_box_ketchup;
-
     @FXML
     private ChoiceBox<Integer> choice_box_mostaza;
-
     @FXML
     private ChoiceBox<Integer> choice_box_barbacoa;
-
     @FXML
     private Button botton_calcular;
-
     @FXML
     private Button botton_confirmar;
-
     @FXML
     private TextArea texto_con_precio;
-
     @FXML
     private TableView<Pedido> tabela_pedido;
-
     @FXML
     private TableColumn coluna_sabor;
-
     @FXML
     private TableColumn coluna_tamaño;
-
     @FXML
     private TableColumn coluna_bebida;
-
     @FXML
     private TableColumn coluna_salsa;
-
     @FXML
     private Button botton_ver_pedido;
     @FXML
     private Button botton_salir;
     @FXML
     private Button botton_borrar_pedido;
-
     private ObservableList<Pedido>pedidos;
 
     /**
@@ -144,7 +120,6 @@ public class Pantalla_Usuario_Controller  implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**
@@ -168,11 +143,9 @@ public class Pantalla_Usuario_Controller  implements Initializable {
                 alert.setContentText("Añadido el pedido");
                 alert.show();
             }
-
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
 
     /**
@@ -182,248 +155,100 @@ public class Pantalla_Usuario_Controller  implements Initializable {
     @FXML
     void Ver_Pedido(ActionEvent event) {
         try{
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        String sabor="";
-        String tamanho="";
-        String bebida="";
-        String salsa = "";
-
-
-
-        if(!this.radio_button_chocolate.isSelected() && !this.radio_button_cuatro_quesos.isSelected() && !this.radio_button_atun.isSelected()){
-            Alert alert=new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
-            alert.setTitle("ERROR!!!");//com o titulo
-            alert.setContentText("Eliges una opcion de sabor");
-            alert.show();
-        }else {
-            if (this.radio_button_atun.isSelected()) {
-                sabor = "Atun";
-            }
-            if (this.radio_button_cuatro_quesos.isSelected()) {
-                sabor = "Cuatro Quesos";
-
-            }
-            if (this.radio_button_chocolate.isSelected()) {
-                sabor = "Chocolate";
-
-            }
-            if (!this.radio_button_pequeña.isSelected() && !this.radio_button_media.isSelected() && !this.radio_button_grande.isSelected()) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
+            String sabor="";
+            String tamanho="";
+            String bebida="";
+            String salsa_ketchup ="0 salsa ketchup";
+            String salsa_mostaza="0 salsa mostaza ";
+            String salsa_barbacoa="0 salsa barbacoa ";
+            if(!this.radio_button_chocolate.isSelected() && !this.radio_button_cuatro_quesos.isSelected() && !this.radio_button_atun.isSelected()){// si no eliges nada
+                Alert alert=new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
                 alert.setTitle("ERROR!!!");//com o titulo
-                alert.setContentText("Eliges un tamaño de pizza");
+                alert.setContentText("Eliges una opcion de sabor");
                 alert.show();
-            } else {
-                if (this.radio_button_pequeña.isSelected()) {
-                    tamanho = "Pequena";
-
+            }else {
+                if (this.radio_button_atun.isSelected()) {
+                    sabor = "Atun";
                 }
-                if (this.radio_button_media.isSelected()) {
-                    tamanho = "Media";
-
+                if (this.radio_button_cuatro_quesos.isSelected()) {
+                    sabor = "Cuatro Quesos";
                 }
-                if (this.radio_button_grande.isSelected()) {
-                    tamanho = "Grande";
-
+                if (this.radio_button_chocolate.isSelected()) {
+                    sabor = "Chocolate";
                 }
-                if (!this.check_box_cerveza.isSelected() && !this.chek_box_cola.isSelected() && !this.ckeck_box_agua.isSelected()) {
+                if (!this.radio_button_pequeña.isSelected() && !this.radio_button_media.isSelected() && !this.radio_button_grande.isSelected()) {//si no eliges el tamaño de la pizza
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
                     alert.setTitle("ERROR!!!");//com o titulo
-                    alert.setContentText("Eliges una bebida");
+                    alert.setContentText("Eliges un tamaño de pizza");
                     alert.show();
-                }else{
-                    if (this.check_box_cerveza.isSelected()) {
-                        bebida = "Cerveza";
-
+                } else {
+                    if (this.radio_button_pequeña.isSelected()) {
+                        tamanho = "Pequena";
                     }
-                    if (this.chek_box_cola.isSelected()) {
-                        bebida = "Cola";
-
+                    if (this.radio_button_media.isSelected()) {
+                        tamanho = "Media";
                     }
-                    if (this.ckeck_box_agua.isSelected()) {
-                        bebida = "Agua";
-
+                    if (this.radio_button_grande.isSelected()) {
+                        tamanho = "Grande";
                     }
-                    if(this.check_box_cerveza.isSelected() &&this.chek_box_cola.isSelected()||this.check_box_cerveza.isSelected()&&this.ckeck_box_agua.isSelected() ){
+                    if (!this.check_box_cerveza.isSelected() && !this.chek_box_cola.isSelected() && !this.ckeck_box_agua.isSelected()) {//si no eliges una bebida
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
                         alert.setTitle("ERROR!!!");//com o titulo
-                        alert.setContentText("Eliges solo una bebida");
+                        alert.setContentText("Eliges una bebida");
                         alert.show();
+                    }else{
+                        if (this.check_box_cerveza.isSelected()) {
+                            bebida = "Cerveza";
+                        }
+                        if (this.chek_box_cola.isSelected()) {
+                            bebida = "Cola";
+                        }
+                        if (this.ckeck_box_agua.isSelected()) {
+                            bebida = "Agua";
+                        }
+                        if(this.check_box_cerveza.isSelected() &&this.chek_box_cola.isSelected() || this.check_box_cerveza.isSelected()&&this.ckeck_box_agua.isSelected() || this.chek_box_cola.isSelected() &&this.ckeck_box_agua.isSelected()){//si eliges más de una bebida
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
+                            alert.setTitle("ERROR!!!");//com o titulo
+                            alert.setContentText("Eliges solo una bebida");
+                            alert.show();
+                        }
                     }
-                    if(this.chek_box_cola.isSelected() &&this.ckeck_box_agua.isSelected() ){
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
-                        alert.setTitle("ERROR!!!");//com o titulo
-                        alert.setContentText("Eliges solo una bebida");
-                        alert.show();
-                    }
+                }
+                if (choice_box_ketchup.getValue()==1 ) {
+                    salsa_ketchup = "1 salsa Ketcup ";
+                }
+                if (choice_box_ketchup.getValue()==2 ) {
+                    salsa_ketchup = "2 salsa Ketcup ";
+                }
+                if (choice_box_ketchup.getValue()==3 ) {
+                    salsa_ketchup = "3 salsa Ketcup ";
+                }
+                if (choice_box_mostaza.getValue()==1) {
+                    salsa_mostaza = "1 salsa Mostaza ";
+                }
+                if (choice_box_mostaza.getValue()==2) {
+                    salsa_mostaza = "2 salsa Mostaza ";
+                }
+                if (choice_box_mostaza.getValue()==3) {
+                    salsa_mostaza = "3 salsa Mostaza ";
+                }
+                if (choice_box_barbacoa.getValue()==1 ) {
+                    salsa_barbacoa = "1 salsa Barbacoa ";
+                }
+                if (choice_box_barbacoa.getValue()==2 ) {
+                    salsa_barbacoa = "2 salsa Barbacoa ";
+                }
+                if (choice_box_barbacoa.getValue()==3 ) {
+                    salsa_barbacoa = "3 salsa Barbacoa ";
                 }
             }
-
-            if (choice_box_ketchup.getValue()==1 ) {
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==0 && choice_box_barbacoa.getValue()==0 ) {
-                    salsa = "1 salsa Ketcup ";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==1 ) {
-                    salsa = "1 salsa Ketcup y 1 salsa Mostaza";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==2 ) {
-                    salsa = "1 salsa Ketcup y 2 salsa Mostaza";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==3 ) {
-                    salsa = "1 salsa Ketcup y 3 salsa Mostaza";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "1 salsa Ketcup y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "1 salsa Ketcup y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "1 salsa Ketcup y 3 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==1 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "1 salsa Ketcup y 1 salsa Mostaza y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==1 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "1 salsa Ketcup y 1 salsa Mostaza y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==1 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "1 salsa Ketcup y 1 salsa Mostaza y 3 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==2 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "1 salsa Ketcup y 2 salsa Mostaza y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==2 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "1 salsa Ketcup y 2 salsa Mostaza y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==2 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "1 salsa Ketcup y 2 salsa Mostaza y 3 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==3 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "1 salsa Ketcup y 3 salsa Mostaza y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==3 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "1 salsa Ketcup y 3 salsa Mostaza y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==1 && choice_box_mostaza.getValue()==3 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "1 salsa Ketcup y 3 salsa Mostaza y 3 salsa Barbacoa";
-                }
+            Pedido pe=new Pedido(sabor,tamanho,bebida,salsa_ketchup+salsa_mostaza+salsa_barbacoa);//crio um objeto de la clase Pedido
+            this.pedidos.add(pe);//añado el objeto al ObservableList
+            this.tabela_pedido.setItems(pedidos);//pongo dentro de la tabla o que tengo dentro de ObservableList
+        }catch (Exception e) {
+            throw new RuntimeException(e);
             }
-
-            if (choice_box_ketchup.getValue()==2 ) {
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==0 && choice_box_barbacoa.getValue()==0 ) {
-                    salsa = "2 salsa Ketcup ";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==1 ) {
-                    salsa = "2 salsa Ketcup y 1 salsa Mostaza";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==2 ) {
-                    salsa = "2 salsa Ketcup y 2 salsa Mostaza";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==3 ) {
-                    salsa = "2 salsa Ketcup y 3 salsa Mostaza";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "2 salsa Ketcup y 1 salsa arbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "2 salsa Ketcup y 2 salsa arbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "2 salsa Ketcup y 3 salsa arbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==1 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "1 salsa Ketcup y 1 salsa Mostaza y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==1 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "1 salsa Ketcup y 1 salsa Mostaza y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==1 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "1 salsa Ketcup y 1 salsa Mostaza y 3 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==2 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "1 salsa Ketcup y 2 salsa Mostaza y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==2 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "1 salsa Ketcup y 2 salsa Mostaza y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==2 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "1 salsa Ketcup y 2 salsa Mostaza y 3 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==3 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "1 salsa Ketcup y 3 salsa Mostaza y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==3 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "1 salsa Ketcup y 3 salsa Mostaza y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==2 && choice_box_mostaza.getValue()==3 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "1 salsa Ketcup y 3 salsa Mostaza y 3 salsa Barbacoa";
-                }
-            }
-            if (choice_box_ketchup.getValue()==3 ) {
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==0 && choice_box_barbacoa.getValue()==0 ) {
-                    salsa = "3 salsa Ketcup ";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==1 ) {
-                    salsa = "3 salsa Ketcup y 1 salsa Mostaza";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==2 ) {
-                    salsa = "3 salsa Ketcup y 2 salsa Mostaza";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==3 ) {
-                    salsa = "3 salsa Ketcup y 3 salsa Mostaza";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "3 salsa Ketcup y 1 salsa arbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "3 salsa Ketcup y 2 salsa arbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "3 salsa Ketcup y 3 salsa arbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==1 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "3 salsa Ketcup y 1 salsa Mostaza y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==1 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "3 salsa Ketcup y 1 salsa Mostaza y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==1 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "3 salsa Ketcup y 1 salsa Mostaza y 3 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==2 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "3 salsa Ketcup y 2 salsa Mostaza y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==2 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "3 salsa Ketcup y 2 salsa Mostaza y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==2 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "3 salsa Ketcup y 2 salsa Mostaza y 3 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==3 && choice_box_barbacoa.getValue()==1 ) {
-                    salsa = "3 salsa Ketcup y 3 salsa Mostaza y 1 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==3 && choice_box_barbacoa.getValue()==2 ) {
-                    salsa = "3 salsa Ketcup y 3 salsa Mostaza y 2 salsa Barbacoa";
-                }
-                if (choice_box_ketchup.getValue()==3 && choice_box_mostaza.getValue()==3 && choice_box_barbacoa.getValue()==3 ) {
-                    salsa = "3 salsa Ketcup y 3 salsa Mostaza y 3 salsa Barbacoa";
-                }
-            }
-
-
-            Pedido pe=new Pedido(sabor,tamanho,bebida,salsa);
-
-            this.pedidos.add(pe);
-
-            this.tabela_pedido.setItems(pedidos);
-            }
-
-        }
-
-
+    }
 
 
     /**
@@ -440,12 +265,10 @@ public class Pantalla_Usuario_Controller  implements Initializable {
             if(result.get()== ButtonType.OK){//se o get do objeto for OK
                 Stage stagePrincipal=(Stage) botton_salir.getScene().getWindow();
                 stagePrincipal.close();//fecha a ventana
-
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**
@@ -459,10 +282,7 @@ public class Pantalla_Usuario_Controller  implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
-
-
     /**
      *metodo para por os numeros nas caixas do choicebox e construir a tabela com as colunas
      * @param url
@@ -487,5 +307,4 @@ public class Pantalla_Usuario_Controller  implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
 }
