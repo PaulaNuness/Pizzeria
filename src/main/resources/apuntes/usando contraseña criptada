@@ -1,0 +1,51 @@
+        // Senha em texto simples que você deseja cifrar
+        String senhaOriginal = "minhaSenha123";
+
+        try {
+            // Crie uma instância do MessageDigest com o algoritmo SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+            // Converta a senha em bytes
+            byte[] senhaBytes = senhaOriginal.getBytes();
+
+            // Atualize o MessageDigest com os bytes da senha
+            digest.update(senhaBytes);
+
+            // Gere o hash da senha
+            byte[] senhaHash = digest.digest();
+
+            // Converta o hash em uma representação hexadecimal
+            StringBuilder senhaHex = new StringBuilder();
+            for (byte b : senhaHash) {
+                senhaHex.append(String.format("%02x", b));
+            }
+
+            // Agora você pode armazenar a senhaHex no banco de dados
+            // Insira-a em uma coluna no banco de dados
+
+            // Não é possível descriptografar o hash SHA-256 para recuperar a senha original,
+            // apenas verificar se a senha fornecida corresponde ao hash armazenado.
+
+            // Verificação de senha
+            String senhaDigitadaPeloUsuario = "minhaSenha123";
+
+            // Crie um novo hash para a senha digitada
+            digest.reset();
+            digest.update(senhaDigitadaPeloUsuario.getBytes());
+            byte[] senhaDigitadaHash = digest.digest();
+
+            // Converta o hash da senha digitada em hexadecimal
+            StringBuilder senhaDigitadaHex = new StringBuilder();
+            for (byte b : senhaDigitadaHash) {
+                senhaDigitadaHex.append(String.format("%02x", b));
+            }
+
+            // Compare o hash da senha digitada com o hash armazenado no banco de dados
+            if (senhaDigitadaHex.toString().equals(senhaHex.toString())) {
+                System.out.println("Senha correta.");
+            } else {
+                System.out.println("Senha incorreta.");
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }

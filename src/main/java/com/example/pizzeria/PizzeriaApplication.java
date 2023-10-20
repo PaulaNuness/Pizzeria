@@ -1,5 +1,6 @@
 package com.example.pizzeria;
 
+import com.example.pizzeria.clases.ConexionBBDD;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *@author Paula Nunes
@@ -31,7 +33,7 @@ public class PizzeriaApplication extends Application {
      *
      * @param args Ele permite que você passe argumentos da linha de comando para o programa quando você o executa
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
         launch();
     }
 }

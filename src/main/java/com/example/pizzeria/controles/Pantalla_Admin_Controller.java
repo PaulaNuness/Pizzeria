@@ -44,14 +44,13 @@ public class Pantalla_Admin_Controller {
     }
 
     /**
-     *
+     *cuando clico no botato Ver_Pedidos, ponho dentro da area de texto, as informacoes que tenho na tabla pedidos(base de datos)
      * @param event
      */
     @FXML
     void Ver_Pedidos(ActionEvent event) {
         try{
             texto_area_pedidos.setText(ConexionBBDD.obtener_Pedidos());
-            ConexionBBDD.obtener_Pedidos();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

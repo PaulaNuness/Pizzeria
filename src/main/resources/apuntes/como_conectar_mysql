@@ -1,3 +1,17 @@
+en ese proyecto estoy utilizando na manera que el profesor hizo
+********************************************************************************************************
+pongo las dependencias em pom:
+voy en RUN ---> EDIT CONFIGURATIONS --> abaixo de build and run e abaixo de java 21 sdk .... --> escrever: --module-path "C:\java\javafx-sdk-21\lib" --add-modules javafx.controls,javafx.fxml
+e para conectar con mysql:
+ <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>8.1.0</version>
+            </dependency>
+
+
+************************************************************************************************************
 1-Adicione o Driver JDBC ao seu projeto:
 
     Se você estiver usando o Maven ou o Gradle, adicione a dependência ao seu arquivo de construção
@@ -31,7 +45,5 @@ e clique em "OK" para salvar a configuração.
 
 ********************************************************************************************************
 
-nao consegui usar as dependencias, entao coloquei diretamente o .jar para a conexao
 
-********************************************************************************************************
 

@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.net.URL;
+import java.security.MessageDigest;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -45,18 +46,31 @@ public class Pantalla_Registros_Controller implements Initializable {
 
     /**
      *metodo que inserta o novo ususario na base de datos
+     * a coontraseña armazenada na base de datos estará criptada
      * @param "ActionEvent", que é um parâmetro comum para manipuladores de eventos JavaFX. O parâmetro do evento representa o evento que acionou o método.
      */
     @FXML
     void Confirmar_Registro(ActionEvent event) {
         try{
-            String em=texto_registrar_email.getText();
             int numero=ConexionBBDD.obtenerultimoIDUsuario();
+            String em=texto_registrar_email.getText();
             String cont=texto_registrar_contrasena.getText();
-            Pattern pat = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$");
+            MessageDigest dig = MessageDigest.getInstance("SHA-256");// Crie uma instância do MessageDigest com o algoritmo SHA-256
+            byte[] senhaBytes = cont.getBytes();// Converta a senha em bytes
+            dig.update(senhaBytes);// Atualize o MessageDigest com os bytes da senha
+            byte[] senhaHash = dig.digest();// Gere o hash da senha
+            StringBuilder senhaHex = new StringBuilder();// Converta o hash em uma representação hexadecimal
+            for (byte b : senhaHash) {
+                senhaHex.append(String.format("%02x", b));
+            }
+
+            Pattern pat = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");//coloco um padrao para o email
             Matcher mat = pat.matcher(em);
             if(mat.find()){
-                if(ConexionBBDD.insertar_usuario(numero,em,cont)){
+                if(ConexionBBDD.usuario_em_la_base_de_datos(em)){
+                    ConexionBBDD.eliminar_usuario(em);
+                }
+                if(ConexionBBDD.insertar_usuario(numero,em, String.valueOf(senhaHex))){
                     Alert alert=new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
                     alert.setTitle("Confirmado!!!");//com o titulo
                     alert.setContentText("Añadido los datos");

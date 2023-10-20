@@ -2,6 +2,10 @@ package com.example.pizzeria.clases;
 
 
 
+
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.*;
 
@@ -10,33 +14,37 @@ import java.util.*;
  * essa clase foi criada para conectar com a base de datos
  */
 public class ConexionBBDD {
-    /**
-     * varibles que vou usar para fazer a conexao
-     */
-    private static final String URL="jdbc:mysql://localhost:3306/pizzeria";
-    private static final String USER="root";
-    private static final String PASSWORD="toor";
     private static Connection a;
 
+    /**
+     * metodo utiliza a clase R para ler o fichero pizzeria.properties e fazer a conexao com a base de datos
+     * @return true o false
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
+    public static boolean conectar() throws ClassNotFoundException, SQLException, IOException {
+        boolean conect=false;
+        Properties configuration = new Properties();
+        configuration.load(R.getProperties("pizzeria.properties"));
+        String host = configuration.getProperty("host");
+        String port = configuration.getProperty("port");
+        String name = configuration.getProperty("name");
+        String username = configuration.getProperty("username");
+        String password = configuration.getProperty("password");
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        a = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + name + "?serverTimezone=UTC",
+                username, password);
+        conect=true;
+        return conect;
+    }
 
     /**
-     * metodo que fara a conexao
-     * @return false ou true
-     * @throws ClassNotFoundException Se você está obtendo uma exceção ClassNotFoundException ao tentar carregar a classe do driver JDBC do MySQL
-     * @throws SQLException errores SQL
+     * metodo desconecta a aplicaçao com a base de datos
+     * @throws SQLException
      */
-    public static boolean conectar() {
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conexao = DriverManager.getConnection(URL, USER, PASSWORD);
-            boolean conectado=false;
-            a= DriverManager.getConnection(URL,USER,PASSWORD);
-            conectado= true;
-            return conectado;
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public static void desconectar() throws SQLException {
+        a.close();
     }
 
     /**
@@ -55,20 +63,6 @@ public class ConexionBBDD {
         return ok;
     }
 
-    /**
-     *metodo que desconectara
-     * @return false ou true
-     */
-    public static boolean desconectar(){
-        boolean desconectado=false;
-        try{
-            a.close();
-            desconectado=true;
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return desconectado;
-    }
 
     /**
      * metodo que dira se o usuario nao existe(0), se o usuario existe(1) e se o usuario e a contraseña coinciden(2)
@@ -76,7 +70,6 @@ public class ConexionBBDD {
      * @param y parametro que vai dizer se existe a contraseña na base de datos
      * @return retorna o que houver na variavel existe
      */
-
     public static int usuario_existe(String x, String y) {
         int existe = 0;//nao existe
         try{
@@ -86,12 +79,22 @@ public class ConexionBBDD {
             while(consulta_uno.next()){//enquanto volver linhas para consultar
                 if (consulta_uno.getString("email").equals(x)){//se o que esta na coluna email é igual a x(pasado por parametro)
                     existe=1;//Si el usuario existe
-                    if (consulta_uno.getString("contrasena").equals(y)){//se o que esta na coluna contraseña é igual a y(pasado por parametros)
+                    MessageDigest dig = MessageDigest.getInstance("SHA-256");// Crie uma instância do MessageDigest com o algoritmo SHA-256
+                    dig.reset();// Crie um novo hash para a senha digitada
+                    dig.update(y.getBytes());
+                    byte[] senhaDigitadaHash = dig.digest();
+                    StringBuilder senhaDigitadaHex = new StringBuilder();// Converta o hash da senha digitada em hexadecimal
+                    for (byte b : senhaDigitadaHash) {
+                        senhaDigitadaHex.append(String.format("%02x", b));
+                    }
+                    if (consulta_uno.getString("contrasena").equals(senhaDigitadaHex.toString())){//se o que esta na coluna contraseña é igual a y(pasado por parametros)
                         existe=2;//Si el usuario existe y la contraseña coincide
                     }
                 }
             }
         }catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
         return existe;
@@ -111,7 +114,7 @@ public class ConexionBBDD {
     public static boolean insertar_pedido(int i,String f,String sa,String t,String b,String sal) {
         boolean ok=false;
         try {
-            Connection a = DriverManager.getConnection(URL, USER, PASSWORD);
+            ConexionBBDD.conectar();
             String sql="insert into pedidos values(?,?,?,?,?,?)";
             PreparedStatement pre = a.prepareStatement(sql);
             pre.setInt(1, i);
@@ -124,6 +127,10 @@ public class ConexionBBDD {
             ok=true;
         } catch (SQLException e) {
             System.out.println(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return ok;
     }
@@ -140,7 +147,7 @@ public class ConexionBBDD {
             int x=0;
             String y=" ";
             HashMap<String,Integer>lista=new HashMap<String,Integer>();
-            Connection a = DriverManager.getConnection(URL, USER, PASSWORD);
+            ConexionBBDD.conectar();
             Statement s= a.createStatement();
             String sql = "SELECT * FROM usuarios ";
             ResultSet resultado = s.executeQuery(sql);
@@ -168,7 +175,7 @@ public class ConexionBBDD {
     public static boolean insertar_usuario(int id_usuario,String email,String contraseña) {
         boolean ok=false;
         try {
-            Connection a = DriverManager.getConnection(URL, USER, PASSWORD);
+            ConexionBBDD.conectar();
             String sql="insert into usuarios values(?,?,?)";
             PreparedStatement pre = a.prepareStatement(sql);
             pre.setInt(1,id_usuario);
@@ -178,6 +185,10 @@ public class ConexionBBDD {
             ok=true;
         } catch (SQLException e) {
             System.out.println(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return ok;
     }
@@ -190,7 +201,7 @@ public class ConexionBBDD {
     public static int obtenerultimoIDUsuario() throws SQLException {
         try{
             int identifica=0;
-            Connection a = DriverManager.getConnection(URL, USER, PASSWORD);
+            ConexionBBDD.conectar();
             Statement s= a.createStatement();
             String sql = "SELECT * FROM usuarios ";
             ResultSet resultado = s.executeQuery(sql);
@@ -204,7 +215,7 @@ public class ConexionBBDD {
 
     }
 
-    /**
+    /**metodo obtenho os pedidos da tabla pedidos na base de datos
      * @return
      * @throws SQLException
      */
@@ -215,7 +226,7 @@ public class ConexionBBDD {
 
             int x=0;
             String y=" ";
-            Connection a = DriverManager.getConnection(URL, USER, PASSWORD);
+            ConexionBBDD.conectar();
             Statement s= a.createStatement();
             String sql = "SELECT * FROM pedidos ";
             ResultSet resultado = s.executeQuery(sql);
@@ -236,7 +247,7 @@ public class ConexionBBDD {
             String yyy=" ";
             String email=" ";
             HashMap<Integer,String>lista2=new HashMap<Integer,String>();
-            Connection aa = DriverManager.getConnection(URL, USER, PASSWORD);
+            ConexionBBDD.conectar();
             Statement ss= a.createStatement();
             String sqll = "SELECT * FROM usuarios ";
             ResultSet resultadoo = s.executeQuery(sqll);
@@ -258,6 +269,42 @@ public class ConexionBBDD {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    /**
+     * metodo verifica se ja existe o email que passei por parametro
+     * @param x
+     * @return
+     */
+    public static boolean usuario_em_la_base_de_datos(String x) {
+        boolean existe = false;//nao existe
+        try {
+            Statement s = a.createStatement();
+            ResultSet consulta_uno = s.executeQuery("Select * from usuarios;");//busca tudo que ha na tabela usuarios
+
+            while (consulta_uno.next()) {//enquanto volver linhas para consultar
+                if (consulta_uno.getString("email").equals(x)) {//se o que esta na coluna email é igual a x(pasado por parametro)
+                    existe = true;//Si el usuario existe
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        }
+        return existe;
+    }
+
+    /**
+     * metodo elimina da base de datos usuarios que ja tenham o mesmo email
+     * @param email
+     * @throws SQLException
+     */
+    public static void eliminar_usuario(String email) throws SQLException {
+        String sql = "DELETE FROM usuarios WHERE email = ?";
+
+        PreparedStatement sentencia = a.prepareStatement(sql);
+        sentencia.setString(1, email);
+        sentencia.executeUpdate();
     }
 
 
