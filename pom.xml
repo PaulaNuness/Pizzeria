@@ -74,6 +74,21 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version> <!-- Use a versão mais recente do plugin -->
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>PizzeriaApllication</mainClass> <!-- O nome da classe principal do seu projeto -->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

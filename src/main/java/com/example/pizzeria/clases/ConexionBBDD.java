@@ -307,6 +307,37 @@ public class ConexionBBDD {
         sentencia.executeUpdate();
     }
 
+    /**
+     * metodo para dizer se um email existe ou nao na base de datos
+     * @param x
+     * @return
+     */
+    public static boolean email_existe(String x) {
+        boolean existe = false;//nao existe
+        try{
+            ArrayList<String>ok=new ArrayList<String>();
+            String ident=" ";
+            ConexionBBDD.conectar();
+            Statement s=a.createStatement();
+            String sql = ("SELECT * FROM usuarios");
+            ResultSet consulta_uno=s.executeQuery(sql);//busca tudo que ha na tabela usuarios
+            while(consulta_uno.next()){//enquanto volver linhas para consultar
+                ident = consulta_uno.getString(2);
+                ok.add(ident);
+            }
+            if(ok.contains(x)){
+                existe=true;
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return existe;
+    }
+
 
 }
 

@@ -123,7 +123,7 @@ public class Pantalla_Usuario_Controller  implements Initializable {
     }
 
     /**
-     *metodo qu econfirma o pedido e inserta o pedido na base de datos, na tabela pedidos
+     *metodo que confirma o pedido e inserta o pedido na base de datos, na tabela pedidos
      * @param "ActionEvent", que é um parâmetro comum para manipuladores de eventos JavaFX. O parâmetro do evento representa o evento que acionou o método.
      */
     @FXML
@@ -276,7 +276,7 @@ public class Pantalla_Usuario_Controller  implements Initializable {
      * @param event
      */
     @FXML
-    void Borrar_pedido(ActionEvent event) {
+    void  Borrar_pedido(ActionEvent event) {
         try{
             pedidos.clear();
         } catch (Exception e) {

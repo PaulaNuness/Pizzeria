@@ -41,7 +41,7 @@ public class Inicio_Controller  {
     public static String ident;
 
     /**
-     *quanto clico no botao entrar, se eu tenho aceso vai para a seguinte pantalla, se nao tenho aceso aparece Alertas
+     *quanto clico no botao entrar, se eu tenho acceso vai para a seguinte pantalla, se nao tenho aceso aparece un Alerta
      * @param "ActionEvent", que é um parâmetro comum para manipuladores de eventos JavaFX. O parâmetro do evento representa o evento que acionou o método.
      */
     @FXML

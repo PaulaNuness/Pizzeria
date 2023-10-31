@@ -45,7 +45,7 @@ public class Pantalla_Registros_Controller implements Initializable {
     private ImageView tomate;
 
     /**
-     *metodo que inserta o novo ususario na base de datos
+     *metodo que inserta o novo usuario na base de datos
      * a coontraseña armazenada na base de datos estará criptada
      * @param "ActionEvent", que é um parâmetro comum para manipuladores de eventos JavaFX. O parâmetro do evento representa o evento que acionou o método.
      */
@@ -66,21 +66,28 @@ public class Pantalla_Registros_Controller implements Initializable {
 
             Pattern pat = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");//coloco um padrao para o email
             Matcher mat = pat.matcher(em);
-            if(mat.find()){
-                if(ConexionBBDD.usuario_em_la_base_de_datos(em)){
-                    ConexionBBDD.eliminar_usuario(em);
-                }
-                if(ConexionBBDD.insertar_usuario(numero,em, String.valueOf(senhaHex))){
+            if (ConexionBBDD.email_existe(em)) {//se el email ya existe
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
+                alert.setTitle("ERROR");//com o titulo
+                alert.setContentText("Perdona este email ya existe");
+                alert.show();
+            }else{
+                if(mat.find()){
+                    if(ConexionBBDD.usuario_em_la_base_de_datos(em)){
+                        ConexionBBDD.eliminar_usuario(em);
+                    }
+                    if(ConexionBBDD.insertar_usuario(numero,em, String.valueOf(senhaHex))){
+                        Alert alert=new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
+                        alert.setTitle("Confirmado!!!");//com o titulo
+                        alert.setContentText("Añadido los datos");
+                        alert.show();
+                    }
+                }else{
                     Alert alert=new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
-                    alert.setTitle("Confirmado!!!");//com o titulo
-                    alert.setContentText("Añadido los datos");
+                    alert.setTitle("Formato incorrecto!!!");//com o titulo
+                    alert.setContentText("Email debe tener:\nuno o varios caracteres al inicio\ndespues uno @\ndespues uno o varios caracteres\ndespues seguido de un punto y al menos dos caracters");
                     alert.show();
                 }
-            }else{
-                Alert alert=new Alert(Alert.AlertType.INFORMATION);//criar alerta de informacao
-                alert.setTitle("Formato incorrecto!!!");//com o titulo
-                alert.setContentText("Email debe tener:\nuno o varios caracteres al inicio\ndespues uno @\ndespues uno o varios caracteres\ndespues seguido de un punto y al menos tres caracters");
-                alert.show();
             }
 
         } catch (Exception e) {
